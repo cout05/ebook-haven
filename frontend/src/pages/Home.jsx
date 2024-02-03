@@ -1,7 +1,13 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import Navbar from "../components/home/NavBar";
+import Carousel from "../components/home/Carousel";
+
 const Home = () => {
-  return <div className="p-4 bg-[#39ad91]"></div>;
+  return (
+    <div className="h-screen">
+      <Navbar />
+      <Carousel />
+    </div>
+  );
 };
 
 export default Home;
