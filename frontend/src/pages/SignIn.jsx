@@ -1,44 +1,76 @@
-import React from "react";
+import React, { useState } from "react";
 import { AiOutlineTwitter } from "react-icons/ai";
 import { BiLogoFacebook } from "react-icons/bi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import WelcomePage from "../components/auth/WelcomePage";
+import axios from "axios";
 
 const SignIn = () => {
+  const [un, setUn] = useState("");
+  const [pw, setPw] = useState("");
+  const navigate = useNavigate();
+
+  const login = (event) => {
+    event.preventDefault();
+
+    const info = {
+      username: un,
+      password: pw,
+    };
+
+    axios
+      .post("http://localhost:5555/user/login", info)
+      .then((res) => {
+        if (res.data.message === "Login successful") {
+          navigate("/home");
+        } else {
+          alert("Incorrect");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("error");
+      });
+  };
+
   return (
     <section className="h-screen text-[#EFECEC] bg-[#39ad91] flex flex-col md:flex-row">
       <WelcomePage />
       <div className="w-full md:w-[50%] px-5 md:px-0 mt-16 md:mt-0 md:h-screen md:bg-[#39ad91] flex md:justify-center md:items-center">
         <div className="px-10 pb-5 pt-5 bg-white bg-opacity-20 backdrop-blur-lg rounded-md shadow-2xl">
-          <h1 className="text-3xl font-semibold pb-5">Sign In</h1>
-          <input
-            className="text-sm w-full px-4 py-2 bg-transparent outline-none border-b-2 border-[#efecec] placeholder-[#efecec]"
-            type="text"
-            placeholder="Email Address"
-          />
-          <input
-            className="text-sm w-full px-4 py-2 bg-transparent outline-none border-b-2 border-[#efecec] placeholder-[#efecec] mt-4"
-            type="password"
-            placeholder="Password"
-          />
-          <div className="mt-4 flex justify-between font-semibold text-sm">
-            <label className="flex text-slate-500 hover:text-slate-600 cursor-pointer">
-              <input className="mr-1" type="checkbox" />
-              <span>Remember Me</span>
-            </label>
-            <a
-              className="text-blue-600 hover:text-blue-700 hover:underline hover:underline-offset-4"
-              href="#">
-              Forgot Password?
-            </a>
-          </div>
-          <div className="text-center md:text-left">
-            <button
-              className="mt-4 bg-[#39ad91] shadow-2xl hover:bg-[#58ffd8] px-4 py-2 text-[#efecec] uppercase rounded text-xs tracking-wider"
-              type="submit">
-              Sign in
-            </button>
-          </div>
+          <form onSubmit={login}>
+            <h1 className="text-3xl font-semibold pb-5">Log In</h1>
+            <input
+              className="text-sm w-full px-4 py-2 bg-transparent outline-none border-b-2 border-[#efecec] placeholder-[#efecec]"
+              type="text"
+              placeholder="Username"
+              onChange={(e) => setUn(e.target.value)}
+            />
+            <input
+              className="text-sm w-full px-4 py-2 bg-transparent outline-none border-b-2 border-[#efecec] placeholder-[#efecec] mt-4"
+              type="password"
+              placeholder="Password"
+              onChange={(e) => setPw(e.target.value)}
+            />
+            <div className="mt-4 flex justify-between font-semibold text-sm">
+              <label className="flex text-slate-500 hover:text-slate-600 cursor-pointer">
+                <input className="mr-1" type="checkbox" />
+                <span>Remember Me</span>
+              </label>
+              <a
+                className="text-blue-600 hover:text-blue-700 hover:underline hover:underline-offset-4"
+                href="#">
+                Forgot Password?
+              </a>
+            </div>
+            <div className="text-center md:text-left">
+              <button
+                className="mt-4 bg-[#39ad91] shadow-2xl hover:bg-[#58ffd8] px-4 py-2 text-[#efecec] uppercase rounded text-xs tracking-wider"
+                type="submit">
+                Log in
+              </button>
+            </div>
+          </form>
           <div className="mt-4 font-semibold text-sm text-slate-500 text-center md:text-left">
             Don&apos;t have an account?{" "}
             <Link
