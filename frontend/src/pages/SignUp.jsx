@@ -1,47 +1,81 @@
-import React from "react";
+import React, { useState } from "react";
 import { AiOutlineTwitter } from "react-icons/ai";
 import { BiLogoFacebook } from "react-icons/bi";
 import WelcomePage from "../components/auth/WelcomePage";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const SignIn = () => {
+  const [fn, setFn] = useState("");
+  const [ln, setLn] = useState("");
+  const [un, setUn] = useState("");
+  const [pw, setPw] = useState("");
+  const navigate = useNavigate();
+
+  const signUp = (event) => {
+    event.preventDefault();
+
+    const info = {
+      firstname: fn,
+      lastname: ln,
+      username: un,
+      password: pw,
+    };
+
+    axios
+      .post("http://localhost:5555/user/signup", info)
+      .then(() => {
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("error");
+      });
+  };
+
   return (
     <section className="h-screen text-[#EFECEC] bg-[#39ad91] flex flex-col md:flex-row md:justify-center md:items-center">
       <WelcomePage />
       <div className="w-full md:w-[50%] px-5 md:px-0 mt-16 md:mt-0  md:h-screen md:bg-[#39ad91] flex md:justify-center md:items-center">
         <div className="px-10 pb-5 pt-5 bg-[#efecec] bg-opacity-20 backdrop-blur-lg rounded-md shadow-2xl">
-          <h1 className="text-3xl font-semibold pb-5">Sign Up</h1>
-          <div className="flex justify-between gap-2">
+          <form onSubmit={signUp}>
+            <h1 className="text-3xl font-semibold pb-5">Sign Up</h1>
+            <div className="flex justify-between gap-2">
+              <input
+                className="flex-1 text-sm w-full px-4 py-2 bg-transparent outline-none border-b-2 border-[#efecec] placeholder-[#efecec]"
+                type="text"
+                placeholder="First Name"
+                onChange={(e) => setFn(e.target.value)}
+              />
+              <input
+                className="flex-1 text-sm w-full px-4 py-2 bg-transparent outline-none border-b-2 border-[#efecec] placeholder-[#efecec]"
+                type="text"
+                placeholder="Last Name"
+                onChange={(e) => setLn(e.target.value)}
+              />
+            </div>
+
             <input
-              className="flex-1 text-sm w-full px-4 py-2 bg-transparent outline-none border-b-2 border-[#efecec] placeholder-[#efecec]"
+              className="text-sm w-full px-4 py-2 bg-transparent outline-none border-b-2 border-[#efecec] placeholder-[#efecec]  mt-4"
               type="text"
-              placeholder="First Name"
+              placeholder="Username"
+              onChange={(e) => setUn(e.target.value)}
             />
             <input
-              className="flex-1 text-sm w-full px-4 py-2 bg-transparent outline-none border-b-2 border-[#efecec] placeholder-[#efecec]"
-              type="text"
-              placeholder="Last Name"
+              className="text-sm w-full px-4 py-2 bg-transparent outline-none border-b-2 border-[#efecec] placeholder-[#efecec] mt-4"
+              type="password"
+              placeholder="Password"
+              onChange={(e) => setPw(e.target.value)}
             />
-          </div>
 
-          <input
-            className="text-sm w-full px-4 py-2 bg-transparent outline-none border-b-2 border-[#efecec] placeholder-[#efecec]  mt-4"
-            type="text"
-            placeholder="Email Address"
-          />
-          <input
-            className="text-sm w-full px-4 py-2 bg-transparent outline-none border-b-2 border-[#efecec] placeholder-[#efecec] mt-4"
-            type="password"
-            placeholder="Password"
-          />
-
-          <div className="text-center md:text-left">
-            <button
-              className="mt-4 bg-[#39ad91] shadow-2xl hover:bg-[#58ffd8] px-4 py-2 text-[#efecec] uppercase rounded text-xs tracking-wider"
-              type="submit">
-              Sign up
-            </button>
-          </div>
+            <div className="text-center md:text-left">
+              <button
+                className="mt-4 bg-[#39ad91] shadow-2xl hover:bg-[#58ffd8] px-4 py-2 text-[#efecec] uppercase rounded text-xs tracking-wider"
+                type="submit">
+                Sign up
+              </button>
+            </div>
+          </form>
           <div className="mt-4 font-semibold text-sm text-slate-500 text-center md:text-left">
             Already have an account?{" "}
             <Link
