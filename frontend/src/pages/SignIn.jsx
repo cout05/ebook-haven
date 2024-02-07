@@ -65,7 +65,7 @@ const SignIn = () => {
             </div>
             <div className="text-center md:text-left">
               <button
-                className="mt-4 bg-[#39ad91] shadow-2xl hover:bg-[#58ffd8] px-4 py-2 text-[#efecec] uppercase rounded text-xs tracking-wider"
+                className="mt-4 bg-gray-800 shadow-2xl hover:bg-gray-600 px-4 py-2 text-[#efecec] uppercase rounded text-xs tracking-wider"
                 type="submit">
                 Log in
               </button>
