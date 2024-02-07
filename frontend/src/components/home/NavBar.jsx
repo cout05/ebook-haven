@@ -8,7 +8,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <nav className="bg-[#39ad91] text-[#EFECEC] border-[#7b7294]">
+      <nav className="bg-[#39ad91] fixed d: w-full z-10 text-[#EFECEC] border-[#7b7294]">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <div className="flex items-center gap-4">
             <img className="w-[50px] rounded" src={img} alt="logo" />
@@ -66,7 +66,7 @@ const Navbar = () => {
                 <a
                   href="#"
                   className="block py-2 hover:text-[#65ffdb] px-3 md:p-0">
-                  Services
+                  Books
                 </a>
               </li>
             </ul>
