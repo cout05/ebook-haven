@@ -6,13 +6,15 @@ import ShowBook from "./pages/ShowBook";
 import DeleteBook from "./pages/DeleteBook";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<SignIn />}></Route>
+      <Route path="/signin" element={<SignIn />}></Route>
       <Route path="/signup" element={<SignUp />}></Route>
-      <Route path="/home" element={<Home />}></Route>
+      <Route path="/" element={<Home />}></Route>
+      <Route path="/dashboard" element={<Dashboard />}></Route>
       <Route path="/books/create" element={<CreateBook />}></Route>
       <Route path="/books/details/:id" element={<ShowBook />}></Route>
       <Route path="/books/edit/:id" element={<EditBook />}></Route>
