@@ -80,7 +80,7 @@ const SignIn = () => {
             Already have an account?{" "}
             <Link
               className="text-red-600 hover:underline hover:underline-offset-4"
-              to="/">
+              to="/signin">
               Sign in
             </Link>
           </div>

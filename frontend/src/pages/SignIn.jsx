@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { AiOutlineTwitter } from "react-icons/ai";
 import { BiLogoFacebook } from "react-icons/bi";
 import { Link, useNavigate } from "react-router-dom";
 import WelcomePage from "../components/auth/WelcomePage";
+import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
 
 const SignIn = () => {
   const [un, setUn] = useState("");
   const [pw, setPw] = useState("");
   const navigate = useNavigate();
+  const { loggedIn } = useContext(AuthContext);
 
   const login = (event) => {
     event.preventDefault();
@@ -22,9 +24,11 @@ const SignIn = () => {
       .post("http://localhost:5555/user/login", info)
       .then((res) => {
         if (res.data.message === "Login successful") {
-          navigate("/home");
+          const { token } = res.data;
+          loggedIn(token);
+          navigate("/");
         } else {
-          alert("Incorrect");
+          alert("Password Incorrect");
         }
       })
       .catch((error) => {
