@@ -34,21 +34,21 @@ const SignIn = () => {
   };
 
   return (
-    <section className="h-screen text-[#EFECEC] bg-[#39ad91] flex flex-col md:flex-row md:justify-center md:items-center">
+    <section className="h-screen text-[#39ad91] flex flex-col md:flex-row md:justify-center md:items-center">
       <WelcomePage />
-      <div className="w-full md:w-[50%] px-5 md:px-0 mt-16 md:mt-0  md:h-screen md:bg-[#39ad91] flex md:justify-center md:items-center">
-        <div className="px-10 pb-5 pt-5 bg-[#efecec] bg-opacity-20 backdrop-blur-lg rounded-md shadow-2xl">
+      <div className="w-full md:w-[50%] px-5 md:px-0 mt-16 md:mt-0  md:h-screen  flex md:justify-center md:items-center">
+        <div className="px-10 pb-5 pt-5  rounded-md">
           <form onSubmit={signUp}>
             <h1 className="text-3xl font-semibold pb-5">Sign Up</h1>
             <div className="flex justify-between gap-2">
               <input
-                className="flex-1 text-sm w-full px-4 py-2 bg-transparent outline-none border-b-2 border-[#efecec] placeholder-[#efecec]"
+                className="flex-1 text-sm w-full px-4 py-2 bg-transparent outline-none border-b-2 border-[#39ad91] placeholder-[#39ad91]"
                 type="text"
                 placeholder="First Name"
                 onChange={(e) => setFn(e.target.value)}
               />
               <input
-                className="flex-1 text-sm w-full px-4 py-2 bg-transparent outline-none border-b-2 border-[#efecec] placeholder-[#efecec]"
+                className="flex-1 text-sm w-full px-4 py-2 bg-transparent outline-none border-b-2 border-[#39ad91] placeholder-[#39ad91]"
                 type="text"
                 placeholder="Last Name"
                 onChange={(e) => setLn(e.target.value)}
@@ -56,13 +56,13 @@ const SignIn = () => {
             </div>
 
             <input
-              className="text-sm w-full px-4 py-2 bg-transparent outline-none border-b-2 border-[#efecec] placeholder-[#efecec]  mt-4"
+              className="text-sm w-full px-4 py-2 bg-transparent outline-none border-b-2 border-[#39ad91] placeholder-[#39ad91]  mt-4"
               type="text"
               placeholder="Username"
               onChange={(e) => setUn(e.target.value)}
             />
             <input
-              className="text-sm w-full px-4 py-2 bg-transparent outline-none border-b-2 border-[#efecec] placeholder-[#efecec] mt-4"
+              className="text-sm w-full px-4 py-2 bg-transparent outline-none border-b-2 border-[#39ad91] placeholder-[#39ad91] mt-4"
               type="password"
               placeholder="Password"
               onChange={(e) => setPw(e.target.value)}
@@ -70,7 +70,7 @@ const SignIn = () => {
 
             <div className="text-center md:text-left">
               <button
-                className="mt-4 bg-gray-800 shadow-2xl hover:bg-gray-600 px-4 py-2 text-[#efecec] uppercase rounded text-xs tracking-wider"
+                className="mt-4 bg-[#39ad91] shadow-2xl hover:bg-[#39ad91] px-4 py-2 text-[#fff] uppercase rounded text-xs tracking-wider"
                 type="submit">
                 Sign up
               </button>
@@ -80,7 +80,7 @@ const SignIn = () => {
             Already have an account?{" "}
             <Link
               className="text-red-600 hover:underline hover:underline-offset-4"
-              to="/signin">
+              to="/login">
               Sign in
             </Link>
           </div>
@@ -93,7 +93,7 @@ const SignIn = () => {
             <label className="mr-1">Continue with</label>
             <button
               type="button"
-              className="mx-1 h-9 w-9  rounded-full bg-blue-600 hover:bg-blue-700 text-[#efecec] shadow-[0_4px_9px_-4px_#3b71ca]">
+              className="mx-1 h-9 w-9  rounded-full bg-blue-600 hover:bg-blue-700 text-[#fff] shadow-[0_4px_9px_-4px_#3b71ca]">
               <BiLogoFacebook
                 size={20}
                 className="flex justify-center items-center w-full"
@@ -101,7 +101,7 @@ const SignIn = () => {
             </button>
             <button
               type="button"
-              className="inlne-block mx-1 h-9 w-9 rounded-full bg-blue-600 hover:bg-blue-700 uppercase leading-normal text-[#efecec] shadow-[0_4px_9px_-4px_#3b71ca]">
+              className="inlne-block mx-1 h-9 w-9 rounded-full bg-blue-600 hover:bg-blue-700 uppercase leading-normal text-[#fff] shadow-[0_4px_9px_-4px_#3b71ca]">
               <AiOutlineTwitter
                 size={20}
                 className="flex justify-center items-center w-full"
