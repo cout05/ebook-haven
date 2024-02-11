@@ -1,18 +1,21 @@
-import React, { useState } from "react";
+import { useState, useContext } from "react";
 import BackButton from "../components/BackButton";
 import Spinner from "../components/Spinner";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 const CreateBooks = () => {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [publishYear, setPublishYear] = useState("");
   const [loading, setLoading] = useState(false);
+  const { userId } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleSaveBook = () => {
     const data = {
+      userId,
       title,
       author,
       publishYear,
