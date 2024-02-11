@@ -49,6 +49,7 @@ router.post("/login", async (request, response) => {
       if (existingUser.password === password) {
         return response.status(200).send({
           message: "Login successful",
+          userId: existingUser._id,
         });
       } else {
         return response.status(200).send({
