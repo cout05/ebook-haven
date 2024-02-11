@@ -11,7 +11,7 @@ import Dashboard from "./pages/Dashboard";
 function App() {
   return (
     <Routes>
-      <Route path="/signin" element={<SignIn />}></Route>
+      <Route path="/login" element={<SignIn />}></Route>
       <Route path="/signup" element={<SignUp />}></Route>
       <Route path="/" element={<Home />}></Route>
       <Route path="/dashboard" element={<Dashboard />}></Route>
