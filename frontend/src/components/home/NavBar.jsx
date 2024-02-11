@@ -73,7 +73,7 @@ const Navbar = () => {
             {isLoggedIn ? (
               <li>
                 <Link
-                  to="/logout"
+                  to="/login"
                   className="py-2 block hover:text-[#65ffdb] px-3 md:p-0">
                   Logout
                 </Link>
