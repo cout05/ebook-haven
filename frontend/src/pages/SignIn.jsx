@@ -60,7 +60,7 @@ const SignIn = () => {
             />
             <div className="mt-4 flex justify-between font-semibold text-sm">
               <label className="flex text-slate-500 hover:text-slate-600 cursor-pointer">
-                <input className="mr-1" type="checkbox" />
+                <input className="mr-1 accent-[#39ad91]" type="checkbox" />
                 <span>Remember Me</span>
               </label>
               <a
