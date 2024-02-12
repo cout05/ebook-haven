@@ -5,7 +5,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // Import React 
 
 const CarouselComponent = () => {
   return (
-    <div className="bg-gray-800 pt-[150px] pb-14">
+    <div className="bg-gray-800  bg-my-background-image pt-[150px] pb-14">
       <div className="container mx-auto px-4">
         <div className="text-center">
           <h1 className="text-4xl font-bold text-white mb-4">
@@ -24,7 +24,7 @@ const CarouselComponent = () => {
             showThumbs={false}
             showStatus={false}
             className="rounded-lg shadow-xl">
-            <div className="bg-white rounded-lg p-8">
+            <div className="bg-white  rounded-lg p-8">
               <h2 className="text-xl font-bold mb-2">eBook Title 1</h2>
               <p className="text-gray-600 mb-4">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et
