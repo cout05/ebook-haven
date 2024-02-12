@@ -12,7 +12,7 @@ const Navbar = () => {
   return (
     <div>
       <nav className=" fixed w-full z-10 text-[#EFECEC] border-[#7b7294]">
-        <div className="flex bg-[#39ad91] flex-wrap items-center justify-between px-10 py-4">
+        <div className="flex bg-[#39ad91]  bg-my-background-image flex-wrap items-center justify-between px-10 py-4">
           <div className="flex items-center gap-4">
             <img className="w-[50px] rounded" src={img} alt="logo" />
             <span className="self-center text-xl md:text-2xl font-semibold">
@@ -32,7 +32,7 @@ const Navbar = () => {
         <div
           className={`${
             search ? "right-0" : "-right-full"
-          } bg-[#39ad91] px-4 w-full md:w-[35vw] xl:max-w-[30vw] h-full fixed
+          } bg-[#39ad91]  bg-my-background-image px-4 w-full md:w-[35vw] xl:max-w-[30vw] h-full fixed
      top-0 shadow-2xl transition-all duration-300 z-20 overflow-y-auto`}>
           <button
             onClick={() => setSearch(!search)}
@@ -74,6 +74,7 @@ const Navbar = () => {
               <li>
                 <Link
                   to="/login"
+                  onClick={logout}
                   className="py-2 block hover:text-[#65ffdb] px-3 md:p-0">
                   Logout
                 </Link>
