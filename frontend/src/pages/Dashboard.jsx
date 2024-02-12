@@ -27,18 +27,16 @@ const Dashboard = () => {
       });
   }, []);
   return (
-    <div>
+    <div className=" bg-my-background-image bg-gray-900 text-[#EFECEC] h-screen">
       <Link to="/" className="p-4">
         <IoChevronBack className="text-4xl cursor-pointer" />
       </Link>
-      <div className="flex px-2 gap-4 border-b-2 border-black">
-        <button
-          className="text-2xl border-b-4 border-blue-950"
-          onClick={() => setShowType("table")}>
-          Table
+      <div className="flex gap-4">
+        <button className="text-2xl" onClick={() => setShowType("table")}>
+          Library
         </button>
         <button className="text-2xl" onClick={() => setShowType("card")}>
-          Card
+          Uploaded
         </button>
       </div>
 
@@ -54,8 +52,16 @@ const Dashboard = () => {
           <h1 className="text-2xl"> Welcome</h1>
         </div>
         <div className="border w-full">
-          <div className="flex justify-between items-center px-4">
-            <h1 className="text-3xl my-8">Your books</h1>
+          <div className="flex justify-between items-center px-4 border mb-8">
+            <h1 className="text-3xl">Uploaded</h1>
+            <div className="flex gap-4">
+              <button className="text-2xl" onClick={() => setShowType("table")}>
+                Table
+              </button>
+              <button className="text-2xl" onClick={() => setShowType("card")}>
+                Card
+              </button>
+            </div>
             <Link to="/books/create">
               <MdOutlineAddBox className="text-sky-800 text-4xl" />
             </Link>
