@@ -26,7 +26,7 @@ const CreateBooks = () => {
       .then(() => {
         setLoading(false);
         alert("Book Created successfully", { variant: "success" });
-        navigate("/");
+        navigate("/dashboard");
       })
       .catch((error) => {
         setLoading(false);
