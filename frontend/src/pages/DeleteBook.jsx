@@ -16,7 +16,7 @@ const DeleteBook = () => {
       .then(() => {
         setLoading(false);
         alert("Book Deleted successfully", { variant: "success" });
-        navigate("/");
+        navigate("/dashboard");
       })
       .catch((error) => {
         setLoading(false);
