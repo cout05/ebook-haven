@@ -11,13 +11,14 @@ const BookSingleCard = ({ book }) => {
   const [showModal, setShowModal] = useState(false);
 
   return (
-    <div className="border-2 bg-gray-900 bg-my-background-image rounded-lg px-4 py-2  relative hover:shadow-2xl">
+    <div className="border-2 bg-gray-900 text-[#EFECEC] bg-my-background-image rounded-lg px-4 py-2  relative hover:shadow-2xl">
       <h2 className=" px-4 py-1 bg-[#f04963] bg-my-background-image rounded-lg">
         <div className="flex justify-start items-center gap-x-2">
           <PiBookOpenTextLight className="text-[#EFECEC] text-2xl" />
           <h2 className="my-1">{book.title}</h2>
         </div>
       </h2>
+      <img src={book.bookCover} alt={book.bookCover} />
       <h4 className="my-2">#{book._id}</h4>
       <div className="flex justify-start items-center gap-x-2">
         <h2 className="my-1">{book.publishYear}</h2>
