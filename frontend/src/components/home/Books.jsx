@@ -1,18 +1,38 @@
-import React from "react";
+import React, { useState, useContext, useEffect } from "react";
+import BooksCard from "../dashboard/BooksCard";
+import Spinner from "../Spinner";
+import axios from "axios";
+import Empty from "../dashboard/Empty";
 
 const Books = () => {
+  const [books, setBooks] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    axios
+      .get("http://localhost:5555/books/")
+      .then((response) => {
+        setBooks(response.data.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        setLoading(false);
+        console.log(error);
+      });
+  }, []);
+
   return (
     <div>
       <section className="p-4">
-        <h1>Free books</h1>
-        <div className="grid grid-cols-4 gap-4">
-          <div className="p-4 border-black border">
-            <img className="w-[150px] h-[150px]" src="books" alt="books" />
-            <p>title</p>
-            <p>Author</p>
-            <p>price</p>
-          </div>
-        </div>
+        <h1>All books</h1>
+        {loading ? (
+          <Spinner />
+        ) : books.length > 0 ? (
+          <BooksCard books={books} />
+        ) : (
+          <Empty />
+        )}
       </section>
     </div>
   );
