@@ -9,20 +9,26 @@ const CreateBooks = () => {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [publishYear, setPublishYear] = useState("");
+  const [bookCover, setBookCover] = useState(null); // Add state for the cover image
   const [loading, setLoading] = useState(false);
   const { userId } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleSaveBook = () => {
-    const data = {
-      userId,
-      title,
-      author,
-      publishYear,
-    };
+    const data = new FormData();
+    data.append("userId", userId);
+    data.append("title", title);
+    data.append("author", author);
+    data.append("publishYear", publishYear);
+    data.append("bookCover", bookCover); // Append the cover image to the FormData
+
     setLoading(true);
     axios
-      .post("http://localhost:5555/books", data)
+      .post("http://localhost:5555/books", data, {
+        headers: {
+          "Content-Type": "multipart/form-data", // Set content type to multipart/form-data for file uploads
+        },
+      })
       .then(() => {
         setLoading(false);
         alert("Book Created successfully", { variant: "success" });
@@ -30,7 +36,7 @@ const CreateBooks = () => {
       })
       .catch((error) => {
         setLoading(false);
-        // alert('An error happened. Please Chack console');
+        // alert('An error happened. Please Check console');
         alert("Error", { variant: "error" });
         console.log(error);
       });
@@ -67,6 +73,14 @@ const CreateBooks = () => {
             value={publishYear}
             onChange={(e) => setPublishYear(e.target.value)}
             className="border-2 border-gray-500 px-4 py-2  w-full "
+          />
+        </div>
+        <div className="my-4">
+          <label className="text-xl mr-4 text-gray-500">Cover Image</label>
+          <input
+            type="file"
+            onChange={(e) => setBookCover(e.target.files[0])} // Set the selected file to the state
+            className="border-2 border-gray-500 px-4 py-2 w-full"
           />
         </div>
         <button className="p-2 bg-sky-300 m-8" onClick={handleSaveBook}>
