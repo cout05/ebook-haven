@@ -25,7 +25,7 @@ const Books = () => {
   return (
     <div>
       <section className="p-4">
-        <h1>All books</h1>
+        <h1 className="font-semibold text-2xl py-2">All books</h1>
         {loading ? (
           <Spinner />
         ) : books.length > 0 ? (
