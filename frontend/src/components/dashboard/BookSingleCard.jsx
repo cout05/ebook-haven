@@ -13,7 +13,9 @@ const BookSingleCard = ({ book }) => {
 
   useEffect(() => {
     const loadImage = async () => {
-      const image = await import(`../../uploads/${book.bookCover}`);
+      const name = book.bookCover.slice(0, -4);
+
+      const image = await import(`../../uploads/${name}.jpg`);
       setImageUrl(image.default);
     };
 
