@@ -4,47 +4,34 @@ import { BiUserCircle, BiShow } from "react-icons/bi";
 import { AiOutlineEdit } from "react-icons/ai";
 import { BsInfoCircle } from "react-icons/bs";
 import { MdOutlineDelete } from "react-icons/md";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import BookModal from "./BookModal";
 
 const BookSingleCard = ({ book }) => {
   const [showModal, setShowModal] = useState(false);
+  const [imageUrl, setImageUrl] = useState("");
+
+  useEffect(() => {
+    const loadImage = async () => {
+      const image = await import(`../../uploads/${book.bookCover}`);
+      setImageUrl(image.default);
+    };
+
+    loadImage();
+  }, [book.bookCover]);
 
   return (
-    <div className="border-2 bg-gray-900 text-[#EFECEC] bg-my-background-image rounded-lg px-4 py-2  relative hover:shadow-2xl">
-      <h2 className=" px-4 py-1 bg-[#f04963] bg-my-background-image rounded-lg">
-        <div className="flex justify-start items-center gap-x-2">
-          <PiBookOpenTextLight className="text-[#EFECEC] text-2xl" />
-          <h2 className="my-1">{book.title}</h2>
-        </div>
-      </h2>
-      <img src={book.bookCover} alt={book.bookCover} />
-      <h4 className="my-2">#{book._id}</h4>
-      <div className="flex justify-start items-center gap-x-2">
-        <h2 className="my-1">{book.publishYear}</h2>
-      </div>
-      <div className="flex justify-start items-center gap-x-2">
-        <BiUserCircle className="text-[#f04963] text-2xl" />
-        <h2 className="my-1">{book.author}</h2>
-      </div>
-      <div className="flex justify-between items-center gap-x-2 mt-4 p-4">
-        <BiShow
-          className="text-3xl text-blue-800 hover:text-black cursor-pointer"
-          onClick={() => setShowModal(true)}
+    <div className="text-[#EFECEC] h-[300px] w-[200px] cursor-pointer rounded-lg  relative hover:shadow-2xl">
+      <Link to={`/books/details/${book._id}`}>
+        <img
+          className="rounded w-full h-full"
+          src={imageUrl}
+          alt={book.bookCover}
         />
-        <Link to={`/books/details/${book._id}`}>
-          <BsInfoCircle className="text-2xl text-green-800 hover:text-black" />
-        </Link>
-        <Link to={`/books/edit/${book._id}`}>
-          <AiOutlineEdit className="text-2xl text-yellow-600 hover:text-black" />
-        </Link>
-        <Link to={`/books/delete/${book._id}`}>
-          <MdOutlineDelete className="text-2xl text-red-600 hover:text-black" />
-        </Link>
+      </Link>
+      <div className="absolute  bottom-0">
+        <h2 className="my-1 mx-2 font-semibold">{book.title}</h2>
       </div>
-      {showModal && (
-        <BookModal book={book} onClose={() => setShowModal(false)} />
-      )}
     </div>
   );
 };
