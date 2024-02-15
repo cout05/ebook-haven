@@ -1,27 +1,49 @@
+import multer from "multer";
 import express from "express";
+import fs from "fs";
+import { v4 as uuidv4 } from "uuid";
+import path from "path";
 import { Book } from "../models/bookModels.js";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+
+// Get the directory name of the current module file
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const router = express.Router();
 
+// Set up Multer for file uploads
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, path.resolve(__dirname, "../../frontend/src/uploads"));
+  },
+  filename: function (req, file, cb) {
+    const ext = path.extname(file.originalname);
+    cb(null, uuidv4() + ext);
+  },
+});
+
+const upload = multer({ storage });
+
 // Routes for Saving a new Book
-router.post("/", async (request, response) => {
+router.post("/", upload.single("bookCover"), async (request, response) => {
   try {
-    if (
-      !request.body.userId ||
-      !request.body.title ||
-      !request.body.author ||
-      !request.body.publishYear
-    ) {
+    const { userId, title, author, publishYear } = request.body;
+
+    if (!userId || !title || !author || !publishYear) {
       return response.status(400).send({
-        message: "Send all required fields: title, author, publishYear",
+        message: "Send all required fields: userId, title, author, publishYear",
       });
     }
+
     const newBook = {
-      userId: request.body.userId,
-      title: request.body.title,
-      author: request.body.author,
-      publishYear: request.body.publishYear,
+      userId,
+      title,
+      author,
+      publishYear,
+      bookCover: request.file ? request.file.filename : null,
     };
+
     const book = await Book.create(newBook);
 
     return response.status(200).send(book);
