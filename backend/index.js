@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import booksRoute from "./routes/booksRoute.js";
 import userRoute from "./routes/userRoute.js";
+import libraryRoute from "./routes/libraryRoute.js";
 import cors from "cors";
 import dotenv from "dotenv";
 
@@ -23,6 +24,7 @@ app.get("/", (request, response) => {
 
 app.use("/books", booksRoute);
 app.use("/user", userRoute);
+app.use("/lib", libraryRoute);
 
 mongoose
   .connect(MONGO_URI)
