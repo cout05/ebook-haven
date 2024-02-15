@@ -1,8 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import Empty from "./Empty";
+import { AuthContext } from "../../context/AuthContext";
+import axios from "axios";
+import SavedBook from "./SavedBook";
 
 const Library = () => {
   const [showType, setShowType] = useState("table");
+  const [books, setBooks] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const { userId } = useContext(AuthContext);
+
+  useEffect(() => {
+    setLoading(true);
+    const id = {
+      userId,
+    };
+    axios
+      .post("http://localhost:5555/lib/get", id)
+      .then((response) => {
+        setBooks(response.data.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        setLoading(false);
+        console.log(error);
+      });
+  }, []);
 
   const handleSelect = (event) => {
     setShowType(event.target.value);
@@ -24,6 +47,7 @@ const Library = () => {
           </div>
         </div>
       </div>
+      <SavedBook books={books} />
       <Empty />
     </div>
   );
