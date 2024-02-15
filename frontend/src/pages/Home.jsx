@@ -1,7 +1,6 @@
 import Navbar from "../components/home/NavBar";
 import Carousel from "../components/home/CarouselComponent";
 import Books from "../components/home/Books";
-import b from "../assets/b.jpg";
 
 const Home = () => {
   return (
