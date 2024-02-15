@@ -7,6 +7,7 @@ import Spinner from "../components/Spinner";
 const ShowBook = () => {
   const [book, setBook] = useState({});
   const [loading, setLoading] = useState(false);
+  const [imageUrl, setImageUrl] = useState("");
   const { id } = useParams();
 
   useEffect(() => {
@@ -23,37 +24,32 @@ const ShowBook = () => {
       });
   }, []);
 
+  useEffect(() => {
+    const loadImage = async () => {
+      const name = book.bookCover.slice(0, -4);
+      const image = await import(`../uploads/${name}.jpg`);
+      setImageUrl(image.default);
+    };
+
+    loadImage();
+  }, [book.bookCover]);
+
   return (
-    <div className="p-4">
+    <div className="bg-my-background-image bg-gray-900 h-screen text-[#EFECEC]">
       <BackButton />
-      <h1 className="text-3xl my-4">Show Book</h1>
       {loading ? (
         <Spinner />
       ) : (
-        <div className="flex flex-col border-2 border-sky-400 rounded-xl w-fit p-4">
-          <div className="my-4">
-            <span className="text-xl mr-4 text-gray-500">Id</span>
-            <span>{book._id}</span>
+        <div className="flex px-[300px]">
+          <div className="px-10">
+            <img className="w-[300px]" src={imageUrl} alt={book.bookCover} />
           </div>
-          <div className="my-4">
-            <span className="text-xl mr-4 text-gray-500">Title</span>
-            <span>{book.title}</span>
-          </div>
-          <div className="my-4">
-            <span className="text-xl mr-4 text-gray-500">Author</span>
-            <span>{book.author}</span>
-          </div>
-          <div className="my-4">
-            <span className="text-xl mr-4 text-gray-500">Publish Year</span>
-            <span>{book.publishYear}</span>
-          </div>
-          <div className="my-4">
-            <span className="text-xl mr-4 text-gray-500">Create Time</span>
-            <span>{new Date(book.createdAt).toString()}</span>
-          </div>
-          <div className="my-4">
-            <span className="text-xl mr-4 text-gray-500">Last Update Time</span>
-            <span>{new Date(book.updatedAt).toString()}</span>
+          <div className="flex flex-col w-fit p-4">
+            <h1 className="text-3xl font-semibold">{book.title}</h1>
+            <div className="my-4">
+              <span className="text-xl mr-2 text-gray-500">by:</span>
+              <span className="text-xl font-semibold">{book.author}</span>
+            </div>
           </div>
         </div>
       )}
