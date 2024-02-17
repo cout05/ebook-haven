@@ -3,6 +3,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import BackButton from "../components/BackButton";
 import Spinner from "../components/Spinner";
+import BookDetails from "../components/dashboard/BookDetails";
 
 const ShowBook = () => {
   const [book, setBook] = useState({});
@@ -35,24 +36,9 @@ const ShowBook = () => {
   }, [book.bookCover]);
 
   return (
-    <div className="bg-my-background-image bg-gray-900 h-screen text-[#EFECEC]">
+    <div className="bg-my-background-image bg-gray-900  h-full md:h-screen text-[#EFECEC]">
       <BackButton />
-      {loading ? (
-        <Spinner />
-      ) : (
-        <div className="flex px-[300px]">
-          <div className="px-10">
-            <img className="w-[300px]" src={imageUrl} alt={book.bookCover} />
-          </div>
-          <div className="flex flex-col w-fit p-4">
-            <h1 className="text-3xl font-semibold">{book.title}</h1>
-            <div className="my-4">
-              <span className="text-xl mr-2 text-gray-500">by:</span>
-              <span className="text-xl font-semibold">{book.author}</span>
-            </div>
-          </div>
-        </div>
-      )}
+      {loading ? <Spinner /> : <BookDetails book={book} imageUrl={imageUrl} />}
     </div>
   );
 };
