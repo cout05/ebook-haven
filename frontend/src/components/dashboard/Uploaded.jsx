@@ -3,9 +3,10 @@ import axios from "axios";
 import Spinner from "../Spinner";
 import { Link } from "react-router-dom";
 import { MdOutlineAddBox } from "react-icons/md";
-import BooksCard from "../dashboard/BooksCard";
+import BookSingleCard from "./BookSingleCard";
 import BooksTable from "../dashboard/BooksTable";
 import { AuthContext } from "../../context/AuthContext";
+import Empty from "./Empty";
 
 const Uploaded = () => {
   const [books, setBooks] = useState([]);
@@ -57,10 +58,20 @@ const Uploaded = () => {
       </div>
       {loading ? (
         <Spinner />
-      ) : showType === "table" ? (
-        <BooksTable books={books} />
+      ) : books.length > 0 ? (
+        showType === "table" ? (
+          <BooksTable books={books} />
+        ) : (
+          <div className="grid grid-cols-2 gap-4 md:gap-2 md:grid-cols-4">
+            {books.map((book) => (
+              <div key={book._id}>
+                <BookSingleCard book={book} />
+              </div>
+            ))}
+          </div>
+        )
       ) : (
-        <BooksCard books={books} />
+        <Empty />
       )}
     </div>
   );
