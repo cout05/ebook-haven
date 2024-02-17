@@ -23,7 +23,7 @@ const BookSingleCard = ({ book }) => {
   }, [book.bookCover]);
 
   return (
-    <div className="text-[#EFECEC] h-[300px] w-[200px] cursor-pointer rounded-lg  relative hover:shadow-2xl">
+    <div className="text-[#EFECEC] h-[200px] w-[140px] md:h-[300px] md:w-[200px] cursor-pointer rounded-lg  relative hover:shadow-2xl">
       <Link to={`/books/details/${book._id}`}>
         <img
           className="rounded w-full h-full"
