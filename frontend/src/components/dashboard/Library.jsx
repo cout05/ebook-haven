@@ -3,6 +3,9 @@ import Empty from "./Empty";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
 import SavedBook from "./SavedBook";
+import BookSingleCard from "./BookSingleCard";
+import BooksTable from "./BooksTable";
+import Spinner from "../Spinner";
 
 const Library = () => {
   const [showType, setShowType] = useState("table");
@@ -18,7 +21,7 @@ const Library = () => {
     axios
       .post("http://localhost:5555/lib/get", id)
       .then((response) => {
-        setBooks(response.data.data);
+        setBooks(response.data.books); // Update state with books array
         setLoading(false);
       })
       .catch((error) => {
@@ -47,8 +50,23 @@ const Library = () => {
           </div>
         </div>
       </div>
-      <SavedBook books={books} />
-      <Empty />
+      {loading ? (
+        <Spinner />
+      ) : books.length > 0 ? (
+        showType === "table" ? (
+          <BooksTable books={books} />
+        ) : (
+          <div className="flex flex-wrap gap-2 items-center justify-center md:justify-start">
+            {books.map((book) => (
+              <div key={book._id}>
+                <BookSingleCard book={book} />
+              </div>
+            ))}
+          </div>
+        )
+      ) : (
+        <Empty />
+      )}
     </div>
   );
 };
