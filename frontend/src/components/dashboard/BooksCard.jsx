@@ -2,7 +2,7 @@ import BookSingleCard from "./BookSingleCard";
 
 const BooksCard = ({ books }) => {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-6 gap-2">
+    <div className="flex gap-2 items-center justify-center md:justify-start">
       {books.reverse().map((item) => (
         <BookSingleCard key={item._id} book={item} />
       ))}
