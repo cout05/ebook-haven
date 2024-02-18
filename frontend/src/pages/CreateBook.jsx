@@ -11,12 +11,12 @@ const CreateBooks = () => {
   const [publishYear, setPublishYear] = useState("");
   const [bookCover, setBookCover] = useState(null); // Add state for the cover image
   const [loading, setLoading] = useState(false);
-  const { userId } = useContext(AuthContext);
+  const { userDetails } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleSaveBook = () => {
     const data = new FormData();
-    data.append("userId", userId);
+    data.append("userId", userDetails._id);
     data.append("title", title);
     data.append("author", author);
     data.append("publishYear", publishYear);
