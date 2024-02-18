@@ -25,9 +25,8 @@ const SignIn = () => {
       .then((res) => {
         if (res.data.message === "Login successful") {
           const { token } = res.data;
-          const id = res.data.userId;
-          console.log(id);
-          loggedIn(token, id);
+          const userDetails = res.data.userDetails;
+          loggedIn(token, userDetails);
           navigate("/");
         } else {
           alert("Password Incorrect");
