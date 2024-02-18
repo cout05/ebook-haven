@@ -12,7 +12,7 @@ const Uploaded = () => {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
   const [showType, setShowType] = useState("table");
-  const { userId } = useContext(AuthContext);
+  const { userDetails } = useContext(AuthContext);
 
   const handleSelect = (event) => {
     setShowType(event.target.value);
@@ -23,11 +23,13 @@ const Uploaded = () => {
     axios
       .get("http://localhost:5555/books/")
       .then((response) => {
-        const uploadedBooks = response.data.data.filter((book) => {
-          // Example: Filtering books with a certain condition
-          return book.userId === userId; // Change the condition as needed
-        });
-        setBooks(uploadedBooks);
+        if (userDetails._id != "") {
+          const uploadedBooks = response.data.data.filter((book) => {
+            // Example: Filtering books with a certain condition
+            return book.userId === userDetails._id; // Change the condition as needed
+          });
+          setBooks(uploadedBooks);
+        }
         setLoading(false);
       })
       .catch((error) => {
@@ -37,7 +39,7 @@ const Uploaded = () => {
   }, []);
 
   return (
-    <div className="w-full ">
+    <div className="w-full">
       <div className="flex bg-my-background-image bg-gray-900 justify-between items-center py-2 px-4 rounded mb-8">
         <div className="flex">
           <h1 className="text-2xl">Uploaded</h1>

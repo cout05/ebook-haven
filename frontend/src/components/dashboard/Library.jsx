@@ -11,12 +11,12 @@ const Library = () => {
   const [showType, setShowType] = useState("table");
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
-  const { userId } = useContext(AuthContext);
+  const { userDetails } = useContext(AuthContext);
 
   useEffect(() => {
     setLoading(true);
     const id = {
-      userId,
+      userId: userDetails._id,
     };
     axios
       .post("http://localhost:5555/lib/get", id)
@@ -35,8 +35,8 @@ const Library = () => {
   };
 
   return (
-    <div className="w-full">
-      <div className="flex bg-my-background-image bg-gray-900 justify-between items-center py-2 px-4 rounded mb-8">
+    <div className="bg-my-background-image bg-gray-900 h-full w-full">
+      <div className="flex justify-between items-center py-2 px-4 rounded mb-8">
         <div className="flex">
           <h1 className="text-2xl">Library</h1>
           <div className="flex px-4">
@@ -56,7 +56,7 @@ const Library = () => {
         showType === "table" ? (
           <BooksTable books={books} />
         ) : (
-          <div className="flex flex-wrap gap-2 items-center justify-center md:justify-start">
+          <div className="grid  grid-cols-2 gap-4 md:gap-2 md:grid-cols-4">
             {books.map((book) => (
               <div key={book._id}>
                 <BookSingleCard book={book} />
