@@ -4,11 +4,11 @@ import axios from "axios";
 import { FaCirclePlus } from "react-icons/fa6";
 
 const BookDetails = ({ book, imageUrl }) => {
-  const { userId } = useContext(AuthContext);
+  const { userDetails } = useContext(AuthContext);
 
   const saveBook = () => {
     const info = {
-      userId: userId,
+      userId: userDetails._id,
       bookId: book._id,
     };
     axios
