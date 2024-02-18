@@ -5,7 +5,7 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [authToken, setAuthToken] = useState("");
-  const [userId, setUserId] = useState("");
+  const [userDetails, setuserDetails] = useState({});
 
   // Initialize state from localStorage on component mount
   useEffect(() => {
@@ -15,9 +15,9 @@ export const AuthProvider = ({ children }) => {
       setIsLoggedIn(true);
     }
 
-    const storedUserId = localStorage.getItem("userId");
-    if (storedUserId) {
-      setUserId(storedUserId);
+    const storeduserDetails = localStorage.getItem("userDetails");
+    if (storeduserDetails) {
+      setuserDetails(storeduserDetails);
     }
   }, []);
 
@@ -25,18 +25,18 @@ export const AuthProvider = ({ children }) => {
   const loggedIn = (token, id) => {
     setIsLoggedIn(true);
     setAuthToken(token);
-    setUserId(id);
+    setuserDetails(id);
     localStorage.setItem("authToken", token); // Store token in localStorage
-    localStorage.setItem("userId", id); // Store user ID in localStorage
+    localStorage.setItem("userDetails", id); // Store user ID in localStorage
   };
 
   // Function to handle logout
   const logout = () => {
     setIsLoggedIn(false);
     setAuthToken("");
-    setUserId("");
+    setuserDetails("");
     localStorage.removeItem("authToken"); // Remove token from localStorage
-    localStorage.removeItem("userId"); // Remove user ID from localStorage
+    localStorage.removeItem("userDetails"); // Remove user ID from localStorage
   };
 
   // Value provided by the context
@@ -45,7 +45,7 @@ export const AuthProvider = ({ children }) => {
     authToken,
     loggedIn,
     logout,
-    userId,
+    userDetails,
   };
 
   return (
