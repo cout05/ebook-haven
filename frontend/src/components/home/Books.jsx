@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import BooksCard from "../dashboard/BooksCard";
+import BookSingleCard from "../dashboard/BookSingleCard";
 import Spinner from "../Spinner";
 import axios from "axios";
 import Empty from "../dashboard/Empty";
@@ -29,7 +29,13 @@ const Books = () => {
         {loading ? (
           <Spinner />
         ) : books.length > 0 ? (
-          <BooksCard books={books} />
+          <div className="grid grid-cols-4">
+            {books.map((book) => (
+              <div key={book._id}>
+                <BookSingleCard book={book} />
+              </div>
+            ))}
+          </div>
         ) : (
           <Empty />
         )}
