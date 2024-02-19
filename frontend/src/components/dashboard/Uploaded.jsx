@@ -23,20 +23,23 @@ const Uploaded = () => {
     axios
       .get("http://localhost:5555/books/")
       .then((response) => {
-        if (userDetails._id != "") {
-          const uploadedBooks = response.data.data.filter((book) => {
-            // Example: Filtering books with a certain condition
-            return book.userId === userDetails._id; // Change the condition as needed
-          });
+        const { data } = response;
+        if (userDetails?._id) {
+          const uploadedBooks = data.data.filter(
+            (book) => book.userId === userDetails._id
+          );
           setBooks(uploadedBooks);
+        } else {
+          setBooks([]);
         }
-        setLoading(false);
       })
       .catch((error) => {
+        console.error("Error fetching books:", error);
+      })
+      .finally(() => {
         setLoading(false);
-        console.log(error);
       });
-  }, []);
+  }, [userDetails]); // Add userDetails to the dependency array
 
   return (
     <div className="w-full">
