@@ -33,7 +33,7 @@ const Navbar = () => {
           className={`${
             search ? "right-0" : "-right-full"
           } bg-[#39ad91]  bg-my-background-image px-4 w-full md:w-[35vw] xl:max-w-[30vw] h-full fixed
-     top-0 shadow-2xl transition-all duration-300 z-20 overflow-y-auto`}>
+     top-0 shadow-2xl transition-all duration-300 z-50 overflow-y-auto`}>
           <button
             onClick={() => setSearch(!search)}
             type="button"

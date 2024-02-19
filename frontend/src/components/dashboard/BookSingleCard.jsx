@@ -37,7 +37,7 @@ const BookSingleCard = ({ book }) => {
       <div
         className={`${
           showModal ? "flex" : "hidden"
-        } absolute items-center justify-center gap-6 z-0 w-[200px] h-[300px] bg-opacity-50 bg-black transition-opacity duration-300`}>
+        } absolute items-center justify-center gap-6  h-[200px] w-[150px] md:h-[300px] md:w-[200px] bg-opacity-50 bg-black transition-opacity duration-300`}>
         <Link to={`/books/details/${book._id}`}>
           <BsInfoCircle className="text-2xl text-[#39ad91]" />
         </Link>
