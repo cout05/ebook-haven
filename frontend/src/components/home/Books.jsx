@@ -3,13 +3,17 @@ import BookSingleCard from "../dashboard/BookSingleCard";
 import Spinner from "../Spinner";
 import axios from "axios";
 import Empty from "../dashboard/Empty";
+import { PathContext } from "../../context/PathContext";
 
 const Books = () => {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
+  const { returnPath, back } = useContext(PathContext);
+  const c = true;
 
   useEffect(() => {
     setLoading(true);
+    back("/");
     axios
       .get("http://localhost:5555/books/")
       .then((response) => {
@@ -32,7 +36,7 @@ const Books = () => {
           <div className="grid grid-cols-2 gap-4 md:gap-2 md:grid-cols-4 ">
             {books.map((book) => (
               <div key={book._id}>
-                <BookSingleCard book={book} />
+                <BookSingleCard isHome={c} book={book} />
               </div>
             ))}
           </div>
