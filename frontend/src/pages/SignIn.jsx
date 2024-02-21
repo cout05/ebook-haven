@@ -10,7 +10,7 @@ const SignIn = () => {
   const [un, setUn] = useState("");
   const [pw, setPw] = useState("");
   const navigate = useNavigate();
-  const { loggedIn } = useContext(AuthContext);
+  const { loggedIn, token } = useContext(AuthContext);
 
   const login = (event) => {
     event.preventDefault();
@@ -24,7 +24,7 @@ const SignIn = () => {
       .post("http://localhost:5555/user/login", info)
       .then((res) => {
         if (res.data.message === "Login successful") {
-          const { token } = res.data;
+          const token = res.data;
           const userDetails = res.data.userDetails;
           loggedIn(token, userDetails);
           navigate("/");
