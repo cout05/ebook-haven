@@ -6,29 +6,40 @@ import SavedBook from "./SavedBook";
 import BookSingleCard from "./BookSingleCard";
 import BooksTable from "./BooksTable";
 import Spinner from "../Spinner";
+import { PathContext } from "../../context/PathContext";
 
 const Library = () => {
   const [showType, setShowType] = useState("table");
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
   const { userDetails } = useContext(AuthContext);
+  const { returnPath, back } = useContext(PathContext);
 
   useEffect(() => {
-    setLoading(true);
-    const id = {
-      userId: userDetails._id,
-    };
-    axios
-      .post("http://localhost:5555/lib/get", id)
-      .then((response) => {
-        setBooks(response.data.books); // Update state with books array
-        setLoading(false);
-      })
-      .catch((error) => {
-        setLoading(false);
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        // Wait for userDetails to be available
+        if (userDetails && userDetails._id) {
+          const id = {
+            userId: userDetails._id,
+          };
+          back("/dashboard"); // Ensure this is needed here
+          const response = await axios.post(
+            "http://localhost:5555/lib/get",
+            id
+          );
+          setBooks(response.data.books); // Update state with books array
+        }
+      } catch (error) {
         console.log(error);
-      });
-  }, []);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData(); // Call the async function immediately
+  }, [userDetails]);
 
   const handleSelect = (event) => {
     setShowType(event.target.value);
