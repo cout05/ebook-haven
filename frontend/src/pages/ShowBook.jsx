@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import BackButton from "../components/BackButton";
 import Spinner from "../components/Spinner";
 import BookDetails from "../components/dashboard/BookDetails";
+import { PathContext } from "../context/PathContext";
 
 const ShowBook = () => {
   const [book, setBook] = useState({});
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState("");
   const { id } = useParams();
+  const returnPath = useContext(PathContext);
 
   useEffect(() => {
     setLoading(true);
@@ -27,9 +29,16 @@ const ShowBook = () => {
 
   useEffect(() => {
     const loadImage = async () => {
-      const name = book.bookCover.slice(0, -4);
-      const image = await import(`../uploads/${name}.jpg`);
-      setImageUrl(image.default);
+      if (book.bookCover) {
+        // This will remove a ".jpg", ".png", etc., extension from the string.
+        const name = book.bookCover.replace(/\.[^/.]+$/, "");
+        try {
+          const image = await import(`../uploads/${name}.jpg`);
+          setImageUrl(image.default);
+        } catch (error) {
+          console.error("Failed to load image:", error);
+        }
+      }
     };
 
     loadImage();
@@ -37,7 +46,7 @@ const ShowBook = () => {
 
   return (
     <div className="bg-my-background-image bg-gray-900  h-full md:h-screen text-[#EFECEC]">
-      <BackButton />
+      <BackButton destination={returnPath} />
       {loading ? <Spinner /> : <BookDetails book={book} imageUrl={imageUrl} />}
     </div>
   );
