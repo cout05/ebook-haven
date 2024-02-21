@@ -7,12 +7,14 @@ import BookSingleCard from "./BookSingleCard";
 import BooksTable from "../dashboard/BooksTable";
 import { AuthContext } from "../../context/AuthContext";
 import Empty from "./Empty";
+import { PathContext } from "../../context/PathContext";
 
 const Uploaded = () => {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
   const [showType, setShowType] = useState("table");
   const { userDetails } = useContext(AuthContext);
+  const { returnPath, back } = useContext(PathContext);
 
   const handleSelect = (event) => {
     setShowType(event.target.value);
@@ -20,6 +22,7 @@ const Uploaded = () => {
 
   useEffect(() => {
     setLoading(true);
+    back("/dashboard");
     axios
       .get("http://localhost:5555/books/")
       .then((response) => {
