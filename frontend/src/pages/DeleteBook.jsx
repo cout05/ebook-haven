@@ -29,7 +29,7 @@ const DeleteBook = () => {
 
   return (
     <div className="bg-my-background-image bg-[#39ad91] h-screen text-[#EFECEC]">
-      <BackButton />
+      <BackButton destination={"/dashboard"} />
       {loading ? (
         <Spinner />
       ) : (
