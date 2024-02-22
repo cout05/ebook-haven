@@ -14,6 +14,7 @@ const Library = () => {
   const [loading, setLoading] = useState(false);
   const { userDetails } = useContext(AuthContext);
   const { returnPath, back } = useContext(PathContext);
+  const mode = "lib";
 
   useEffect(() => {
     const fetchData = async () => {
@@ -70,7 +71,7 @@ const Library = () => {
           <div className="grid  grid-cols-2 gap-4 md:gap-2 md:grid-cols-4">
             {books.map((book) => (
               <div key={book._id}>
-                <BookSingleCard book={book} />
+                <BookSingleCard mode={mode} book={book} />
               </div>
             ))}
           </div>

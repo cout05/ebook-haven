@@ -15,6 +15,7 @@ const Uploaded = () => {
   const [showType, setShowType] = useState("table");
   const { userDetails } = useContext(AuthContext);
   const { returnPath, back } = useContext(PathContext);
+  const mode = "up";
 
   const handleSelect = (event) => {
     setShowType(event.target.value);
@@ -73,7 +74,7 @@ const Uploaded = () => {
           <div className="grid grid-cols-2 gap-4 md:gap-2 md:grid-cols-4">
             {books.map((book) => (
               <div key={book._id}>
-                <BookSingleCard book={book} />
+                <BookSingleCard mode={mode} book={book} />
               </div>
             ))}
           </div>
