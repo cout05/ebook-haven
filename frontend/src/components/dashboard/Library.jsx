@@ -66,7 +66,7 @@ const Library = () => {
         <Spinner />
       ) : books.length > 0 ? (
         showType === "table" ? (
-          <BooksTable books={books} />
+          <BooksTable mode={mode} books={books} />
         ) : (
           <div className="grid  grid-cols-2 gap-4 md:gap-2 md:grid-cols-4">
             {books.map((book) => (
