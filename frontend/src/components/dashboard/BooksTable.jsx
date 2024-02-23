@@ -4,7 +4,7 @@ import { AiOutlineEdit } from "react-icons/ai";
 import { BsInfoCircle } from "react-icons/bs";
 import { MdOutlineAddBox, MdOutlineDelete } from "react-icons/md";
 
-const BooksTable = ({ books }) => {
+const BooksTable = ({ books, mode }) => {
   return (
     <table className="w-full border-separate border-spacing-2">
       <thead>
@@ -41,19 +41,30 @@ const BooksTable = ({ books }) => {
             <td className="border bg-gray-900 bg-my-background-image border-slate-700 rounded-md text-center max-md:hidden">
               {book.publishYear}
             </td>
-            <td className="border bg-gray-900 bg-my-background-image border-slate-700 rounded-md text-center">
-              <div className="flex justify-center gap-x-4">
-                <Link to={`/books/details/${book._id}`}>
-                  <BsInfoCircle className="text-2xl text-green-800" />
-                </Link>
-                <Link to={`/books/edit/${book._id}`}>
-                  <AiOutlineEdit className="text-2xl text-yellow-600" />
-                </Link>
-                <Link to={`/books/delete/${book._id}`}>
-                  <MdOutlineDelete className="text-2xl text-red-600" />
-                </Link>
-              </div>
-            </td>
+            {mode === "up" && (
+              <td className="border bg-gray-900 bg-my-background-image border-slate-700 rounded-md text-center">
+                <div className="flex justify-center gap-x-4">
+                  <Link
+                    onClick={() => back("/")}
+                    to={`/books/details/${book._id}`}>
+                    <BsInfoCircle className="text-2xl text-[#39ad91]" />
+                  </Link>
+                  <Link to={`/books/edit/${book._id}`}>
+                    <AiOutlineEdit className="text-2xl text-]" />
+                  </Link>
+                  <Link to={`/books/delete/${book._id}`}>
+                    <MdOutlineDelete className="text-2xl text-[#f04963]" />
+                  </Link>
+                </div>
+              </td>
+            )}
+            {mode === "lib" && (
+              <td className="border bg-[#f04963] border-slate-700 rounded-md text-center cursor-pointer">
+                <div className="flex justify-center gap-x-4">
+                  <p className="">Remove from Library</p>
+                </div>
+              </td>
+            )}
           </tr>
         ))}
       </tbody>
