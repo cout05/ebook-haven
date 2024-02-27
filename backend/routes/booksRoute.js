@@ -28,9 +28,9 @@ const upload = multer({ storage });
 // Routes for Saving a new Book
 router.post("/", upload.single("bookCover"), async (request, response) => {
   try {
-    const { userId, title, author, publishYear } = request.body;
+    const { userId, title, author, description, publishYear } = request.body;
 
-    if (!userId || !title || !author || !publishYear) {
+    if (!userId || !title || !author || !description || !publishYear) {
       return response.status(400).send({
         message: "Send all required fields: userId, title, author, publishYear",
       });
@@ -40,6 +40,7 @@ router.post("/", upload.single("bookCover"), async (request, response) => {
       userId,
       title,
       author,
+      description,
       publishYear,
       bookCover: request.file ? request.file.filename : null,
     };
@@ -85,6 +86,7 @@ router.put("/:id", async (request, response) => {
     if (
       !request.body.title ||
       !request.body.author ||
+      !request.body.description ||
       !request.body.publishYear
     ) {
       return response.status(400).send({
