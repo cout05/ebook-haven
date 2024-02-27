@@ -23,7 +23,7 @@ const BookDetails = ({ book, imageUrl }) => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row  justify-center md:pt-10">
+    <div className="flex flex-col md:flex-row md:pt-10">
       <div className="px-2 md:px-10">
         {imageUrl != "" ? (
           <img
@@ -46,10 +46,7 @@ const BookDetails = ({ book, imageUrl }) => {
         <div>
           <span className="text-xl mr-2 text-gray-500">desc:</span>
           <span className="text-xl md:font-semibold">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam
-            hic eius fugiat illum accusamus voluptates? Nesciunt exercitationem
-            ducimus corporis quo possimus numquam vel unde, nostrum repellat.
-            Sed at inventore odio.
+            {book.description ? book.description : ""}
           </span>
         </div>
         <div className="my-4">
