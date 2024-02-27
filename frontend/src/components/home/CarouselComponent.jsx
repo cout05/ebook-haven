@@ -46,11 +46,10 @@ const CarouselComponent = () => {
             {books.slice(0, 3).map((book, index) => (
               <div key={index} className="bg-white rounded-lg p-8">
                 <h2 className="text-xl font-bold mb-2">{book.title}</h2>
-                <p className="text-gray-600 mb-4">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                  et tellus ut metus lobortis pulvinar.
-                </p>
-                <Link className="text-blue-500 hover:text-blue-700">
+                <p className="text-gray-600 mb-4">{book.description}</p>
+                <Link
+                  to={`/books/details/${book._id}`}
+                  className="text-blue-500 hover:text-blue-700">
                   Read More
                 </Link>
               </div>
