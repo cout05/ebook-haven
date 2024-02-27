@@ -8,6 +8,8 @@ const EditBook = () => {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [publishYear, setPublishYear] = useState("");
+  const [description, setDescription] = useState("");
+  const [bookCover, setBookCover] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { id } = useParams();
@@ -30,22 +32,28 @@ const EditBook = () => {
   }, []);
 
   const handleEditBook = () => {
-    const data = {
-      title,
-      author,
-      publishYear,
-    };
+    const data = new FormData();
+    data.append("title", title);
+    data.append("author", author);
+    data.append("description", description);
+    data.append("publishYear", publishYear);
+    data.append("bookCover", bookCover); // Append the cover image to the FormData
+
     setLoading(true);
     axios
-      .put(`http://localhost:5555/books/${id}`, data)
+      .put(`http://localhost:5555/books/${id}`, data, {
+        headers: {
+          "Content-Type": "multipart/form-data", // Set content type to multipart/form-data for file uploads
+        },
+      })
       .then(() => {
         setLoading(false);
-        alert("Book Edited successfully", { variant: "success" });
-        navigate("/");
+        alert("Book Created successfully", { variant: "success" });
+        navigate("/dashboard");
       })
       .catch((error) => {
         setLoading(false);
-        // alert('An error happened. Please Chack console');
+        // alert('An error happened. Please Check console');
         alert("Error", { variant: "error" });
         console.log(error);
       });
@@ -77,6 +85,17 @@ const EditBook = () => {
               className="bg-transparent outline-none border-b-2 border-[#efecec] text-1xl   w-full font-semibold text-[#f04963] "
             />
           </div>
+          <div className="flex flex-col gap-2">
+            <label className="block mb-2 text-sm font-medium ">
+              Description
+            </label>
+            <input
+              type="text"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              className="bg-transparent outline-none border-b-2 border-[#efecec] text-1xl   w-full "
+            />
+          </div>
           <div className="flex flex-col gap-1">
             <label className="block mb-2 text-sm font-medium ">
               Publish Year
@@ -89,12 +108,12 @@ const EditBook = () => {
             />
           </div>
           <div className="flex flex-col gap-1">
-            <label class="block mb-2 text-sm font-medium " for="file_input">
+            <label className="block mb-2 text-sm font-medium ">
               Upload file
             </label>
             <input
-              class="block w-full font-semibold text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-              id="file_input"
+              className="block w-full font-semibold text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+              onChange={(e) => setBookCover(e.target.files[0])}
               type="file"
             />
           </div>
