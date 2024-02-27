@@ -25,7 +25,7 @@ const SignIn = () => {
     axios
       .post("http://localhost:5555/user/signup", info)
       .then(() => {
-        navigate("/");
+        navigate("/login");
       })
       .catch((error) => {
         console.log(error);
