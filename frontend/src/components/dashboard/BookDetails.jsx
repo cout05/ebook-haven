@@ -57,7 +57,7 @@ const BookDetails = ({ book, imageUrl }) => {
           <button
             onClick={() => saveBook()}
             type="button"
-            className="bg-[#39ad91] flex items-center gap-1 font-semibold p-2 rounded">
+            className="bg-[#023530] flex items-center gap-1 font-semibold p-2 rounded">
             <FaCirclePlus /> <span>Add to library</span>
           </button>
         </div>

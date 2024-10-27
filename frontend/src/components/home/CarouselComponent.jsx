@@ -24,7 +24,7 @@ const CarouselComponent = () => {
   }, []);
 
   return (
-    <div className="bg-gray-800  bg-my-background-image pt-[150px] pb-14">
+    <div className=" bg-[#011823] bg-my-background-image pt-[150px] pb-14">
       <div className="container mx-auto px-4">
         <div className="text-center">
           <h1 className="text-4xl font-bold text-white mb-4">

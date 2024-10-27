@@ -20,7 +20,7 @@ const BookSingleCard = ({ book, isHome, mode }) => {
   }, [book.bookCover]);
 
   return (
-    <div className="text-[#EFECEC] h-[200px] w-[150px] md:h-[300px] md:w-[200px] cursor-pointer rounded-lg  relative hover:shadow-2xl">
+    <div className="text-[#EFECEC] flex-1 max-w-[200px] min-w-[150px] md:min-w-[45%] sm:min-w-full cursor-pointer rounded-lg relative hover:shadow-2xl">
       {!isHome ? <BookModal book={book} mode={mode} /> : null}
 
       <Link to={`/books/details/${book._id}`}>

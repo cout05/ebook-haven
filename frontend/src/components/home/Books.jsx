@@ -28,12 +28,12 @@ const Books = () => {
 
   return (
     <div>
-      <section className="p-4">
+      <section className="p-4 ">
         <h1 className="font-semibold text-2xl py-2">All books</h1>
         {loading ? (
           <Spinner />
         ) : books.length > 0 ? (
-          <div className="grid grid-cols-2 gap-4 md:gap-2 md:grid-cols-4 ">
+          <div className="flex md:justify-start justify-center gap-4 flex-wrap">
             {books.map((book) => (
               <div key={book._id}>
                 <BookSingleCard isHome={c} book={book} />

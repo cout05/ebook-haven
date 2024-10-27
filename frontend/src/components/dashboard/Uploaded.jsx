@@ -46,7 +46,7 @@ const Uploaded = () => {
   }, [userDetails]); // Add userDetails to the dependency array
 
   return (
-    <div className="w-full">
+    <div className="w-full ">
       <div className="flex bg-my-background-image bg-gray-900 justify-between items-center py-2 px-4 rounded mb-8">
         <div className="flex">
           <h1 className="text-2xl">Uploaded</h1>

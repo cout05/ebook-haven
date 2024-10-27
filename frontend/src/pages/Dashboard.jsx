@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { IoChevronBack } from "react-icons/io5";
-import img from "../components/img/logo.jpg";
+import img from "../components/img/logo.png";
 import Uploaded from "../components/dashboard/Uploaded";
 import Library from "../components/dashboard/Library";
 import { AuthContext } from "../context/AuthContext";
@@ -11,7 +11,7 @@ const Dashboard = () => {
   const [showType, setShowType] = useState(true);
 
   return (
-    <div className="bg-my-background-image bg-[#39ad91]  text-[#EFECEC]">
+    <div className="bg-my-background-image bg-[#023530]  text-[#EFECEC]">
       <Link to="/" className="p-4">
         <IoChevronBack className="text-4xl cursor-pointer" />
       </Link>
@@ -32,9 +32,9 @@ const Dashboard = () => {
         </button>
       </div>
 
-      <div className="flex flex-col md:flex-row bg-my-background-image bg-gray-900 h-screen md:pt-8 px-4 md:justify-between md:gap-4">
+      <div className="flex flex-col md:flex-row bg-my-background-image bg-gray-900 h-full md:h-screen pb-4 md:pt-8 px-4 md:justify-between md:gap-4">
         <div className="w-full md:w-[30%] p-5 flex flex-row md:flex-col gap-4 md:gap-2">
-          <div className="">
+          <div>
             <img
               className="w-[100px] h-[100px]  md:min-w-[200px] md:min-h-[200px] bg-contain rounded-full"
               src={img}

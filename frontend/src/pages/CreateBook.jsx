@@ -45,7 +45,7 @@ const CreateBooks = () => {
   };
 
   return (
-    <div className="md:p-4 bg-my-background-image bg-[#39ad91] h-full text-[#EFECEC]">
+    <div className="md:p-4 bg-my-background-image bg-[#023530] h-screen text-[#EFECEC]">
       <BackButton />
       {loading ? (
         <Spinner />

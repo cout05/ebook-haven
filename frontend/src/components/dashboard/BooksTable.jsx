@@ -47,7 +47,7 @@ const BooksTable = ({ books, mode }) => {
                   <Link
                     onClick={() => back("/")}
                     to={`/books/details/${book._id}`}>
-                    <BsInfoCircle className="text-2xl text-[#39ad91]" />
+                    <BsInfoCircle className="text-2xl text-[#023530]" />
                   </Link>
                   <Link to={`/books/edit/${book._id}`}>
                     <AiOutlineEdit className="text-2xl text-]" />

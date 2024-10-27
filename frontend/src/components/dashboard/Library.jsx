@@ -47,7 +47,7 @@ const Library = () => {
   };
 
   return (
-    <div className="bg-my-background-image bg-gray-900 h-full w-full">
+    <div className="bg-my-background-image bg-gray-900 h-screen md:h-full w-full">
       <div className="flex justify-between items-center py-2 px-4 rounded mb-8">
         <div className="flex">
           <h1 className="text-2xl">Library</h1>
@@ -68,7 +68,7 @@ const Library = () => {
         showType === "table" ? (
           <BooksTable mode={mode} books={books} />
         ) : (
-          <div className="grid  grid-cols-2 gap-4 md:gap-2 md:grid-cols-4">
+          <div className="flex md:justify-start justify-center gap-4 flex-wrap">
             {books.map((book) => (
               <div key={book._id}>
                 <BookSingleCard mode={mode} book={book} />

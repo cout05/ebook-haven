@@ -39,27 +39,27 @@ const SignIn = () => {
   };
 
   return (
-    <section className="h-screen text-[#39ad91] flex flex-col md:flex-row">
+    <section className="h-screen text-[#023530] flex flex-col md:flex-row">
       <WelcomePage />
       <div className="w-full  md:w-[50%] px-5 md:px-0 mt-16 md:mt-0 md:h-screen flex md:justify-center md:items-center">
         <div className="px-10 pb-5 pt-5 rounded-md">
           <form onSubmit={login}>
             <h1 className="text-3xl font-semibold pb-5">Log In</h1>
             <input
-              className="text-sm w-full px-4 py-2 bg-transparent outline-none border-b-2 border-[#39ad91] placeholder-[#39ad91]"
+              className="text-sm w-full px-4 py-2 bg-transparent outline-none border-b-2 border-[#023530] placeholder-[#023530]"
               type="text"
               placeholder="Username"
               onChange={(e) => setUn(e.target.value)}
             />
             <input
-              className="text-sm w-full px-4 py-2 bg-transparent outline-none border-b-2 border-[#39ad91] placeholder-[#39ad91] mt-4"
+              className="text-sm w-full px-4 py-2 bg-transparent outline-none border-b-2 border-[#023530] placeholder-[#023530] mt-4"
               type="password"
               placeholder="Password"
               onChange={(e) => setPw(e.target.value)}
             />
             <div className="mt-4 flex justify-between font-semibold text-sm">
               <label className="flex text-slate-500 hover:text-slate-600 cursor-pointer">
-                <input className="mr-1 accent-[#39ad91]" type="checkbox" />
+                <input className="mr-1 accent-[#023530]" type="checkbox" />
                 <span>Remember Me</span>
               </label>
               <a
@@ -70,7 +70,7 @@ const SignIn = () => {
             </div>
             <div className="text-center md:text-left">
               <button
-                className="mt-4 bg-[#39ad91] shadow-2xl hover:bg-[#39ad91] px-4 py-2 text-[#fff] uppercase rounded text-xs tracking-wider"
+                className="mt-4 bg-[#023530] shadow-2xl hover:bg-[#023530] px-4 py-2 text-[#fff] uppercase rounded text-xs tracking-wider"
                 type="submit">
                 Log in
               </button>
